@@ -1,3 +1,6 @@
+0. docker build . (Create an image from the Dockerfile)
+   docker-compose build
+
 1. After Creating All the files, and an empty ./app directory.
    Run the following command in the current directory from the terminal :-
 
@@ -12,3 +15,12 @@
    app : start the new django project in our current location. (Since the project is running
    on our docker container, for it, the current directory, maps to the 'app' directory through
    bind mounts, which I learnt about in the django-k8s course)
+
+2. After figuring out the travis-ci blunder, I'll momentarily shift to unit tests :-
+   So, create the calc.py and tests.py files in /app/app. And then run the following command
+   in the terminal :-
+
+    docker-compose run app sh -c "python manage.py test"
+
+    docker-compose run app sh -c "python manage.py test && flake8"
+    (This one will also run the lynting along with our code)
