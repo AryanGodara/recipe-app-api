@@ -1,0 +1,14 @@
+1. After Creating All the files, and an empty ./app directory.
+   Run the following command in the current directory from the terminal :-
+
+   docker-compose run app sh -c "django-admin.py startproject app ."
+
+   docker-compose run : the syntactical thingy, to run docker-compose commands
+   app : the service from the docker-compose.yml file that we want to run
+   sh -c : (Optional) Helps to separate the actual command, from the docker-compose syntax
+
+   "" : The command that we want to run
+   django-admin.py startproject : I know this from the django course
+   app : start the new django project in our current location. (Since the project is running
+   on our docker container, for it, the current directory, maps to the 'app' directory through
+   bind mounts, which I learnt about in the django-k8s course)
