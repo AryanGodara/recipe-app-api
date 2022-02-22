@@ -37,3 +37,8 @@
    docker-compose run app sh -c "python manage.py makemigrations"
    docker-compose run app sh -c "python manage.py makemigrations core"
    (Sometimes it's better to specify the app on which we want to make migrations)
+
+5. Now, create a file : tests_admin.py to store the tests for admin.py
+   After creating the file, and the test.
+   We'll now customize our django admin to list our custom user model.
+   (See what we added to admin.py)
