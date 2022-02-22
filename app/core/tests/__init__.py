@@ -1,1 +1,1 @@
-#? We write our tests first, and implement our models later
+# We write our tests first, and implement our models later
