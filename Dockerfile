@@ -9,10 +9,28 @@ ENV PYTHONUNBUFFERED=1
 
 COPY ./requirements.txt /requirements.txt
 
+RUN apk add --update --no-cache postgresql-client
+    #TODO: We're installing the PostgreSQL Client.
+    #* update : Update the registery before we add this package
+    #* no-cache : Don't store the registery index on our dockerfile. (minimize the no. of
+    #* extra files and packages included on our docker container)
+    #? apk = package manager ; add = add a new package
+
+#TODO: Now, we're going to install some temporary packages that need to be installed on the 
+#TODO: system while we run our requirements. And then, we can remove them after the 
+#TODO: requirements have run. (Again, to minimize the size of Dockerifle)
+RUN apk add --update --no-cahce --virtual .tmp-build-deps \
+      gcc libc-dev linux-headers postgresql-dev
+    #* virtual : adds an alias for our dependencies that we can use to easily remove those
+    #* dependencies later. (.tmp-build-deps)
+    #? Then, after linebreak, we list all the temp dependencies that we want to install
+
 RUN pip install -r /requirements.txt
     #? It takes the requirements.txt file we just copied to the container, and it isntalls it
     #? using pip
 
+#TODO: Now, we delete the temporary requirements that we no longer need
+RUN apk del .tmp-build-deps
 
 #TODO: Next we're going to make a directory within our Docker Image that we can use to store
 #TODO: our application source code

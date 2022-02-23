@@ -42,3 +42,23 @@
    After creating the file, and the test.
    We'll now customize our django admin to list our custom user model.
    (See what we added to admin.py)
+
+6. Add new serice called 'db' to docker-compose.yml file. Based on postgres image.
+   Then, go to requirements.txt and (psycopg2>=2.7.5,<2.8.0)
+   Then, go to the Dockerfile, and add the dependencies required to run this.
+
+   Now, you need to rebuild : docker-compose build
+
+7. Now, we have docker all set up, so we can go ahead and configure the database in django
+   Go to settings.py, change the database.
+   Now, create a new folder 'magagement' in 'core', and add the test files.
+
+   After All this is done. Make migrations :-
+   docker-compose up (This will start our app, and run the migrations)
+   (It also starts the server)
+
+8. Now, go to localhost:8000 (app will be running), then go to /admin
+   Now, we need to create a superuser to login to this site, so use the command below
+
+   docker-compose run app sh -c "python manage.py createsuperuser"
+   (aryang@email.com 123)
