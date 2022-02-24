@@ -62,3 +62,20 @@
 
    docker-compose run app sh -c "python manage.py createsuperuser"
    (aryang@email.com 123)
+
+
+9. Now, we createa a new 'user' app
+   docker-compose run app sh -c "python manage.py startapp user"
+   docker-compose run --rm app sh -c "python manage.py startapp user"
+   (To remove the container after it has run the command)
+
+   Add this 'user' app to INSTALLED_APPS along with rest_framework
+
+   Then, remove the migrations folder. As we're keeping it in the core app.
+   then remove admin.py, models.py, tests.py(we create a subfolder for tests)
+
+   Then, go to tests/test_user_api.py file and write all the tests. Then run them(they'll fail)
+
+   docker-compose run --rm app sh -c "python manage.py test"
+
+10. Now, we're gonna implement our create user api to make our tests pass
